@@ -69,7 +69,11 @@ local function ApplyMessage(debuffs, action)
                     debuffs[target.Id][buffId] = now + 180
                 elseif spell == 59 or spell == 359 then -- silence/ga
                     debuffs[target.Id][buffId] = now + 120
-                elseif spell == 253 or spell == 259 or spell == 273 or spell == 274 then -- sleep/2/ga/2
+                elseif spell == 253 or spell == 273 -- sleep/ga
+                    debuffs[target.Id][buffId] = now + 60
+                elseif spell == 259 or spell == 274 then -- sleep2/ga2
+                    debuffs[target.Id][buffId] = now + 90
+                elseif spell == 376 or spell == 463 then -- Foe/Horde Lullaby
                     debuffs[target.Id][buffId] = now + 90
                 elseif spell == 258 or spell == 362 then -- bind
                     debuffs[target.Id][buffId] = now + 60
@@ -132,12 +136,14 @@ debuffHandler.GetActiveDebuffs = function(serverId)
         return nil
     end
     local returnTable = {};
+    local returnTable2 = {};
     for k,v in pairs(debuffHandler.enemies[serverId]) do
         if (v ~= 0 and v > os.time()) then
             table.insert(returnTable, k);
+            table.insert(returnTable2, v - os.time());
         end
     end
-    return returnTable;
+    return returnTable, returnTable2;
 end
 
 return debuffHandler;

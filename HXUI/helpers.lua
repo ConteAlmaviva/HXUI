@@ -349,7 +349,7 @@ function IsMemberOfParty(targetIndex)
 	return false;
 end
 
-function DrawStatusIcons(statusIds, iconSize, maxColumns, maxRows, drawBg, xOffset)
+function DrawStatusIcons(statusIds, iconSize, maxColumns, maxRows, drawBg, xOffset, buffTimes, settings)
 	if (statusIds ~= nil and #statusIds > 0) then
 		local currentRow = 1;
         local currentColumn = 0;
@@ -379,6 +379,32 @@ function DrawStatusIcons(statusIds, iconSize, maxColumns, maxRows, drawBg, xOffs
                     imgui.SetCursorScreenPos({resetX, resetY});
                 end
                 imgui.Image(icon, { iconSize, iconSize }, { 0, 0 }, { 1, 1 });
+                local textObjName = "debuffText" .. tostring(i)
+                -- for i=1,32 do
+                    -- textObj = AshitaCore:GetFontManager():Get(textObjName)
+                    -- if textObj then
+                        -- textObj:SetVisible(false)
+                    -- end
+                -- end
+                if buffTimes ~= nil then
+                    local startX, startY = imgui.GetCursorScreenPos();
+                    local textPosX = startX + (i-1)*iconSize + iconSize/2
+                    local textPosY = startY
+                    local textObj = AshitaCore:GetFontManager():Get(textObjName)
+                    if not textObj then
+                        textObj = AshitaCore:GetFontManager():Create(textObjName)
+                    end
+                    textObj:SetPositionX(textPosX)
+                    textObj:SetPositionY(textPosY)
+                    textObj:SetText('')
+                    textObj:SetFontHeight(settings.font_height-2)                    
+                    textObj:GetBackground():SetColor(4278190080);
+                    if buffTimes[i] ~= nil then
+                        textObj:SetText(tostring(buffTimes[i]))
+                        textObj:GetBackground():SetVisible(true);
+                        textObj:SetVisible(true);
+                    end
+                end
                 if (imgui.IsItemHovered()) then
                     statusHandler.render_tooltip(statusIds[i]);
                 end
