@@ -1,3 +1,7 @@
+01.14.2024 Added debuffed-like functionality to the targetbar; will attempt to render a text object underneath debuff icons on enemy targets showing remaining time on active debuffs. This is assuming base duration, unresisted debuff casts.
+
+![image](https://github.com/ConteAlmaviva/HXUI/assets/8880996/3d9f9d55-a7f7-4fe8-b31e-829cfe6f1b12)
+
 ![HXUI Banner](https://user-images.githubusercontent.com/124013059/220467961-2bcd7ec4-02bc-4ef1-92c5-1ddd98cfc0ac.png)
 [![HXUI Discord](https://user-images.githubusercontent.com/124013059/220468014-bb680d46-3083-452e-803f-20f1385c7e72.png)](https://discord.gg/qepeymYw9y)
 
