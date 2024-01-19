@@ -69,7 +69,7 @@ local function ApplyMessage(debuffs, action)
                     debuffs[target.Id][buffId] = now + 180
                 elseif spell == 59 or spell == 359 then -- silence/ga
                     debuffs[target.Id][buffId] = now + 120
-                elseif spell == 253 or spell == 273 -- sleep/ga
+                elseif spell == 253 or spell == 273 then -- sleep/ga
                     debuffs[target.Id][buffId] = now + 60
                 elseif spell == 259 or spell == 274 then -- sleep2/ga2
                     debuffs[target.Id][buffId] = now + 90
